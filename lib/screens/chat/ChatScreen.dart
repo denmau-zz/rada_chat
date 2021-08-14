@@ -47,54 +47,57 @@ class _ChatScreenState extends State<ChatScreen> {
       ],
     );
 
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: MenuDrawer(),
-      body: SafeArea(
-        child: Container(
-          color: kAscentGreen,
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  color: kSecondaryAppThemeColor,
-                  child: menuBarIcons,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: kAscentGreen,
+        key: _scaffoldKey,
+        drawer: MenuDrawer(),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+            child: Column(
+              children: <Widget>[
+                menuBarIcons,
+                TabBar(
+                  unselectedLabelColor: Color(0xFF333333),
+                  labelColor: kOrangeAscent,
+                  isScrollable: true,
+                  tabs: [
+                    Tab(
+                      text: 'Personal',
+                    ),
+                    Tab(
+                      text: 'Group Chat',
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Expanded(
-                flex: 10,
-                child: Container(
-                  color: Colors.transparent,
-                  child: PageView(
-                    controller: _controller,
-                    children: const <Widget>[
+                Expanded(
+                  child: TabBarView(
+                    children: [
                       Center(
                         child: Text('Chat Room'),
                       ),
                       Center(
-                        child: Text('Chat Group'),
+                        child: Text('Group Chat'),
                       ),
                     ],
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        // isExtended: true,
-        child: Icon(Icons.message_rounded),
-        backgroundColor: kSecondaryAppThemeColor,
-        onPressed: () {
-          log("Floating action button pressed");
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Starting a new chat..."),
-          ));
-        },
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.message_rounded),
+          backgroundColor: kSecondaryAppThemeColor,
+          onPressed: () {
+            log("Floating action button pressed");
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Starting a new chat..."),
+            ));
+          },
+        ),
       ),
     );
   }
