@@ -5,6 +5,8 @@ const kAscentGreen = Color(0xFF84B26B);
 const kSecondaryAppThemeColor = Color(0xFFFD3C67);
 const kTextColorWhite = Color(0xFFFFFFFF);
 const kBlackTextColor = Color(0xFF000000);
+const kOrangeAscent = Color(0xFFF09E2D);
+
 
 const kButtonTextStyle = TextStyle(
   fontFamily: 'Montserrat',
@@ -16,7 +18,7 @@ const kButtonTextStyle = TextStyle(
 var kThemedTextTitleStyle = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w600,
-  color: kAppThemeColor,
+  color: kOrangeAscent,
   fontSize: 15,
 );
 

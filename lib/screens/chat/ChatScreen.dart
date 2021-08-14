@@ -19,6 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
     log("Entered chat screen");
+    final PageController _controller = PageController(initialPage: 0);
 
     var menuBarIcons = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,10 +61,24 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: menuBarIcons,
                 ),
               ),
+              SizedBox(
+                height: 5.0,
+              ),
               Expanded(
-                flex: 9,
+                flex: 10,
                 child: Container(
                   color: Colors.transparent,
+                  child: PageView(
+                    controller: _controller,
+                    children: const <Widget>[
+                      Center(
+                        child: Text('Chat Room'),
+                      ),
+                      Center(
+                        child: Text('Chat Group'),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -77,7 +92,7 @@ class _ChatScreenState extends State<ChatScreen> {
         onPressed: () {
           log("Floating action button pressed");
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Starting a new chat ..."),
+            content: Text("Starting a new chat..."),
           ));
         },
       ),
