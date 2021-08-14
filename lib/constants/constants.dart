@@ -17,7 +17,7 @@ const kButtonTextStyle = TextStyle(
 const kThemedTextTitleStyle = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w600,
-  color: kOrangeAscent,
+  color: kSecondaryAppThemeColor,
   fontSize: 15,
 );
 

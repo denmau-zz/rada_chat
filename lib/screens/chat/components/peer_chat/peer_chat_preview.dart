@@ -33,6 +33,7 @@ class _PeerChatPreviewState extends State<PeerChatPreview> {
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage(userAvatarUrl),
+            radius: 40.0,
           ),
           Column(
             children: [
