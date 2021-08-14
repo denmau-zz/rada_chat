@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rada_chat/routes/routes.dart';
-import 'package:rada_chat/screens/chat/ChatScreen.dart';
+import 'package:rada_chat/screens/chat/chat_screen.dart';
 
 void main() {
   runApp(RadaChatApp());
