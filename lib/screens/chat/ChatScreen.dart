@@ -65,10 +65,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   isScrollable: true,
                   tabs: [
                     Tab(
-                      text: 'Personal',
+                      text: 'Peer Chat',
                     ),
                     Tab(
-                      text: 'Group Chat',
+                      text: 'Chat Room',
                     ),
                   ],
                 ),
@@ -76,10 +76,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: TabBarView(
                     children: [
                       Center(
-                        child: Text('Chat Room'),
+                        child: Text('Peer Chat'),
                       ),
                       Center(
-                        child: Text('Group Chat'),
+                        child: Text('Chat Room'),
                       ),
                     ],
                   ),
