@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:rada_chat/constants/constants.dart';
-import 'package:rada_chat/models/chat_room.dart';
-import 'package:rada_chat/models/peer_chat.dart';
+import 'package:rada_chat/models/chat_room_model.dart';
 
-import 'chat_room/chat_room_preview.dart';
+import 'chat_room/chat_room_screen.dart';
 
 class ChatRoomTab extends StatefulWidget {
   const ChatRoomTab({Key key}) : super(key: key);
@@ -40,13 +38,15 @@ class _ChatRoomTabState extends State<ChatRoomTab> {
         itemCount: chatRooms.length,
         itemBuilder: (BuildContext context, int index) {
           log("Building a chat room preview");
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text("Chat Room preview tapped"),
+                  content: Text("Opening Chat Room ..."),
                 ),
               );
+              // got to chat room screen
+              Navigator.pushNamed(context, ChatRoomScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -75,7 +75,7 @@ class _ChatRoomTabState extends State<ChatRoomTab> {
                             Text(
                               '8:32 PM',
                               style: kBodyText.copyWith(
-                                  fontSize: 12.0, color: kOrangeAscent),
+                                  fontSize: 12.0, color: kPurpleAscent),
                             ),
                           ],
                         ),
@@ -91,7 +91,8 @@ class _ChatRoomTabState extends State<ChatRoomTab> {
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
                               ),
                               padding: EdgeInsets.all(8.0),
                               child: Text((index + 3).toString()),

@@ -63,7 +63,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               TabBar(
                 unselectedLabelColor: Colors.black,
-                labelColor: kOrangeAscent,
+                labelColor: kPurpleAscent,
                 isScrollable: true,
                 tabs: [
                   Tab(

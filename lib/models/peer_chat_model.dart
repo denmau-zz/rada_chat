@@ -10,4 +10,6 @@ class PeerChat {
   String senderName;
   String message;
   DateTime chatSentAt;
+
+  get isGroup => isGroup;
 }

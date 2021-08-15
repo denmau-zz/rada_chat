@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rada_chat/constants/constants.dart';
-import 'package:rada_chat/models/peer_chat.dart';
+import 'package:rada_chat/models/peer_chat_model.dart';
+import 'package:rada_chat/screens/chat/components/peer_chat/peer_chat_screen.dart';
 
 class PeerChatTab extends StatefulWidget {
   const PeerChatTab({Key key}) : super(key: key);
@@ -59,13 +60,15 @@ class _PeerChatTabState extends State<PeerChatTab> {
         itemCount: peerChats.length,
         itemBuilder: (BuildContext context, int index) {
           log("Building a peer chat preview");
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text("Message preview tapped"),
+                  content: Text("Opening chat room..."),
                 ),
               );
+              // got to peer chat screen
+              Navigator.pushNamed(context, PeerChatScreen.routeName);
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -94,7 +97,7 @@ class _PeerChatTabState extends State<PeerChatTab> {
                               DateFormat('kk:mm:a')
                                   .format(peerChats[index].chatSentAt),
                               style: kBodyText.copyWith(
-                                  fontSize: 12.0, color: kOrangeAscent),
+                                  fontSize: 12.0, color: kPurpleAscent),
                             ),
                           ],
                         ),
@@ -109,23 +112,19 @@ class _PeerChatTabState extends State<PeerChatTab> {
                                 maxLines: 1,
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                            // for UI purposes, don't show badge of unread messages on the last chat preview
+                            if (index != 3)
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                padding: EdgeInsets.all(8.0),
+                                child: Text((index + 1).toString()),
                               ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Text((index + 1).toString()),
-                            ),
                           ],
                         ),
-
-                        // Text(
-                        //   peerChats[index].message,
-                        //   style: kBodyText,
-                        //   overflow: TextOverflow.ellipsis,
-                        //   maxLines: 1,
-                        // ),
                       ],
                     ),
                   ),
