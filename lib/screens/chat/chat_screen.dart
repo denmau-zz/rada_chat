@@ -56,27 +56,28 @@ class _ChatScreenState extends State<ChatScreen> {
         key: _scaffoldKey,
         drawer: MenuDrawer(),
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child: menuBarIcons,
-                ),
-                TabBar(
-                  unselectedLabelColor: Color(0xFF333333),
-                  labelColor: kOrangeAscent,
-                  isScrollable: true,
-                  tabs: [
-                    Tab(
-                      text: 'Peer Chat',
-                    ),
-                    Tab(
-                      text: 'Chat Room',
-                    ),
-                  ],
-                ),
-                Expanded(
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: menuBarIcons,
+              ),
+              TabBar(
+                unselectedLabelColor: Color(0xFF333333),
+                labelColor: kOrangeAscent,
+                isScrollable: true,
+                tabs: [
+                  Tab(
+                    text: 'Peer Chat',
+                  ),
+                  Tab(
+                    text: 'Chat Room',
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 8.0),
                   child: TabBarView(
                     children: [
                       PeerChatTab(),
@@ -84,14 +85,26 @@ class _ChatScreenState extends State<ChatScreen> {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.message_rounded),
           backgroundColor: kSecondaryAppThemeColor,
-          onPressed: () {},
+          onPressed: () {
+            final doSomething = SnackBar(
+              content: Text('Some Action to be performed!'),
+              action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  // Some code to undo the change.
+                },
+              ),
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(doSomething);
+          },
         ),
       ),
     );
