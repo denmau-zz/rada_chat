@@ -26,7 +26,8 @@ class _PeerChatTabState extends State<PeerChatTab> {
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     ));
     peerChats.add(PeerChat(
-      userAvatarUrl: "https://static.wikia.nocookie.net/silicon-valley/images/3/33/Richard_Hendricks.jpg/revision/latest?cb=20150526104602",
+      userAvatarUrl:
+          "https://static.wikia.nocookie.net/silicon-valley/images/3/33/Richard_Hendricks.jpg/revision/latest?cb=20150526104602",
       chatSentAt: DateTime.now(),
       senderName: 'Richard Hendricks',
       message:
@@ -41,11 +42,12 @@ class _PeerChatTabState extends State<PeerChatTab> {
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     ));
     peerChats.add(PeerChat(
-      userAvatarUrl: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      userAvatarUrl:
+          "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       chatSentAt: DateTime.now(),
       senderName: 'Brian Odwuor',
       message:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     ));
   }
 
@@ -56,7 +58,7 @@ class _PeerChatTabState extends State<PeerChatTab> {
     return ListView.builder(
         itemCount: peerChats.length,
         itemBuilder: (BuildContext context, int index) {
-          log("Building a chat preview");
+          log("Building a peer chat preview");
           return GestureDetector(
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -85,7 +87,7 @@ class _PeerChatTabState extends State<PeerChatTab> {
                           children: [
                             Text(
                               peerChats[index].senderName,
-                              style: kBodyText,
+                              style: kBodyText.copyWith(color: kTextColorWhite),
                             ),
                             SizedBox(width: 10.0),
                             Text(
@@ -96,12 +98,34 @@ class _PeerChatTabState extends State<PeerChatTab> {
                             ),
                           ],
                         ),
-                        Text(
-                          peerChats[index].message,
-                          style: kBodyText,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                peerChats[index].message,
+                                style: kBodyText,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Text((index + 1).toString()),
+                            ),
+                          ],
                         ),
+
+                        // Text(
+                        //   peerChats[index].message,
+                        //   style: kBodyText,
+                        //   overflow: TextOverflow.ellipsis,
+                        //   maxLines: 1,
+                        // ),
                       ],
                     ),
                   ),
